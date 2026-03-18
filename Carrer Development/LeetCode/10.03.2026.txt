@@ -1,0 +1,47 @@
+1137 N-th Tribonacci Number
+
+class Solution {
+    public int tribonacci(int n) {
+
+        if (n == 0) return 0;
+        if (n == 1 || n == 2) return 1;
+
+        int t0 = 0;
+        int t1 = 1;
+        int t2 = 1;
+
+        for (int i = 3; i <= n; i++) {
+            int next = t0 + t1 + t2;
+
+            t0 = t1;
+            t1 = t2;
+            t2 = next;
+        }
+
+        return t2;
+    }
+}
+
+238. Product of Array Except Self
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] output = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            output[i] = 1;
+        }
+
+        int left = 1;
+        for (int i = 0; i < nums.length; i++) {
+            output[i] *= left;
+            left *= nums[i];
+        }
+
+        int right = 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            output[i] *= right;
+            right *= nums[i];
+        }
+
+        return output;        
+    }
+}
